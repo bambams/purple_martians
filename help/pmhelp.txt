@@ -2568,25 +2568,43 @@ Numerous small bug fixes and improvements.
 
 
 
-<c09>Created by:
 
-<c08>Michael David Weiss
+<c09>Copyright (c) (1997-2018) (Michael David Weiss)
 
-<c15>Copyright 1997-2018
-<c15>(released under no-license, copyright only)
-<c15>(source code available upon request)
+
+<c15>Last Update: April 22, 2018 to version 7.0
+
+<c15>__________________________________________
 <title>
 <mdw1>
-<c15>Last Update: April 22, 2018 to version 7.0
+<c09>released under the zlib license (see license.txt)
+
+<c15>(source code available upon request)
+
+<c09>Here is a is list of tasks you must perform to get the source code:
+
+<c15>Send me an email (mweiss001@gmail.com) requesting the sources
+
+<c15>Attach a new level for the game that you have created (please)
+
+<c15>Promise not to laugh at the nasty hacks and kludges in my code!
+
+<c15>_______________________________________________________________
+
 
 <c09>Contact the author:
 <c15>mweiss001@gmail.com
 
-<c09>Purple Martians on allegro.cc (and lots of other allegro games)
+<c09>Purple Martians on allegro.cc
 <c15>https://www.allegro.cc/depot/PurpleMartians/
+
+<c09>Purple Martians on itch.io
+<c15>https://mweiss001.itch.io/purple-martians
+
 
 <c09>Music by Russel Hoy - Copyright 2000
 
+<c15>___________________________________________
 
 
 <c07>Created with:

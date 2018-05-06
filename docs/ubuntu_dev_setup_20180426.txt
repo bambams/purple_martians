@@ -572,6 +572,165 @@ profit
 
 
 
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+20180428
+
+I'm going to set up a new dev system on linux and document every step...
+
+ubuntu-18.04-desktop-amd64 on nv59
+
+---------------------------------------------------------------
+basic ubuntu setup
+---------------------------------------------------------------
+
+In system settings -> system -> details
+No updates found.
+
+sudo apt-get update
+sudo apt-get install openssh-server (to work remotely)
+
+---------------------------------------------------------------
+get packages for compiling allegro
+---------------------------------------------------------------
+sudo apt-get install build-essential git cmake cmake-curses-gui xorg-dev libgl1-mesa-dev libglu-dev
+
+
+---------------------------------------------------------------
+get packages for allegro's dependencies
+---------------------------------------------------------------
+sudo apt-get install libcurl4-openssl-dev libfreetype6-dev libgtk2.0-dev libasound-dev libpulse-dev libdumb1-dev
+
+
+---------------------------------------------------------
+Get the sources with git
+---------------------------------------------------------
+in a terminal, pwd = /home/m
+git clone https://github.com/liballeg/allegro5.git
+cd allegro5
+git checkout 5.2.4
+git pull --rebase origin 5.2.4
+
+---------------------------------------------------------
+make a build dir and configure with cmake
+---------------------------------------------------------
+int the allegro5 dir
+mkdir build; cd build
+
+ccmake -DCMAKE_INSTALL_PREFIX=/usr ..
+
+build type: Release
+monolith: on
+all these off:
+color
+d3d
+demo
+docs
+embed
+examples
+flac
+webp
+png
+jpg
+ogg video
+openal
+opensl
+opus
+physfs
+release logging
+tests
+video
+vorbis
+
+press "c" twice, and then "g". You should now be back to a console.
+
+---------------------------------------------------------
+compile allegro and install
+---------------------------------------------------------
+make
+took 71s to compile
+
+sudo make install
+Installed /usr/lib/liballegro_monolith.so.5.2.4 (size 1.7M)
+
+
+---------------------------------------------------------
+Install libnet
+---------------------------------------------------------
+- from my local copy of the sources
+from a terminal go to the folder 'libnet' in the game folder
+'make clean'
+'make lib'
+'sudo make install'
+(puts libnet.h in /usr/include/)
+(puts libnet.a in /usr/lib/x86_64-linux-gnu/)
+
+---------------------------------------------------------
+Code::Blocks
+---------------------------------------------------------
+In Software Manager:
+installed Code::Blocks version 16.01
+
+---------------------------------------------------------
+Set up samba share on desktop for project files
+---------------------------------------------------------
+
+made a folder on the desktop 'pm_client13' and shared it
+prompted to install samba, did it with no problems
+checked:
+'allow other to create and delete files in this folder'
+'guest access (for people without an account)'
+clicked 'create share'
+chose 'set permissions automatically'
+
+copy sources to this shared folder then run sudo ./op to
+set owner and permissions for all the files to m:m 777
+
+---------------------------------------------------------
+Open project in code::blocks and compile
+---------------------------------------------------------
+First time code::blocks is run it complains about default compiler
+just choose gcc and it wont complain after first time
+
+gcc -v gives 7.3.0
+
+build settings:
+
+compiler:
+I always use -Wall
+
+in ldm:
+-g
+-pg
+
+in ldm_release:
+-O3
+
+linker:
+-lallegro_monolith
+-lz
+-lnet
+-lpthread
+
+---------------------------------------------------------
+Make a release
+---------------------------------------------------------
+manually copy the needed libraries to /linux_libs
+
+cp /usr/lib/liballegro_monolith.so.5.2 ./linux_libs/
+cp /usr/lib/x86_64-linux-gnu/libdumb.so.1 ./linux_libs
+
+run 'lin_make_release'
+
+a folder called 'purple_martians__linux' is created and needed files are copied to it
+rename the folder like this: 'purple_martians_7.xx_linux'
+right click on the folder and compress to tar.gz
+....?
+profit
+
 
 
 
