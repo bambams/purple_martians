@@ -6,9 +6,10 @@
 
 
 TARGET = LINUX
+PREFIX = /usr/local/lib
 
-LIBDEST = /usr/lib/x86_64-linux-gnu/$(LIBFILENAME)
-INCDEST = /usr/include/$(INCNAME)
+LIBDEST = $(PREFIX)/lib/$(LIBFILENAME)
+INCDEST = $(PREFIX)/include/$(INCNAME)
 EXE_SUFFIX =
 RM_F = rm -f
 CP_F = cp -f
