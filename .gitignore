@@ -5,6 +5,7 @@
 
 /savegame/*.gm
 
+/pm
 /pm.cfg
 /gmon.out
 /pm.depend
