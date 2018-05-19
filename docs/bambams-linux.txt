@@ -1,0 +1,35 @@
+bambam's build process for Linux (tested in Ubuntu Xerces)
+==========================================================
+
+# Move to where you want to put it (I always put source code in $HOME/src).
+$ cd ~/src
+
+# Clone the repo.
+$ git clone git://github.com/mweiss001/purple_martians.git
+
+# Move to the source tree.
+$ cd purple_martians
+
+# Add bambams' repo.
+$ git remote add bambams git://github.com/bambams/purple_martians.git
+
+# Fetch bambams' changes.
+$ git fetch bambams
+
+# Start a throw away branch off of origin/master.
+$ git checkout -b tmp
+
+# Merge bambams/bambuild branch into your throwaway branch based on origin/master.
+$ git merge bambams/bambuild
+
+# Build the embedded libnet and install into $HOME/include and $HOME/lib.
+$ (cd libnet; make PREFIX=$HOME lib install)
+
+# Build the game using bambams' Makefile (expects libnet in $HOME).
+$ make
+
+I don't think you'll need $HOME/lib added to LD_LIBRARY_PATH because we're
+linking with a static library, but if you do you can just define it on the
+command line:
+
+$ LD_LIBRARY_PATH="$HOME/lib" ./pm
